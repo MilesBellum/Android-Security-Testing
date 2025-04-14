@@ -17,8 +17,8 @@ This repository contains a collection of Frida scripts for performing security t
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/tu_usuario/frida-android-security.git
-   cd frida-android-security
+   git clone https://github.com/MilesBellum/Android-Security.git
+   cd Android-Security
    ```
 
 2. Connect your Android device and make sure Frida is installed and running.
