@@ -22,7 +22,7 @@ This repository contains a collection of Frida scripts for performing security t
    cd Android-Security
    ```
 
-2. Connect your Android device and make sure Frida is installed and running. See the [FRIDA](FRIDA) file if you need to install it on your machine.
+2. Connect your Android device and make sure Frida is installed and running. See the [FRIDA](FRIDA.md) file if you need to install it on your machine.
 
 3. Run the loader:
 
@@ -34,12 +34,12 @@ This repository contains a collection of Frida scripts for performing security t
 
 ## ⚠️ Disclaimer 
 
-This project is for educational purposes only. See the [DISCLAIMER](DISCLAIMER) file for more details.
+This project is for educational purposes only. See the [DISCLAIMER](DISCLAIMER.md) file for more details.
 
 ## 📄 License 
 
 This project is licensed under the MIT license. See the [LICENSE](LICENSE) file for more details.
 
----
+##
 
 Questions? Suggestions? Feel free to fork and contribute! 😄

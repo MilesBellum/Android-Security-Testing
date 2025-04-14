@@ -10,8 +10,6 @@ Before using `loader` script, make sure you have the following installed:
 - An Android device (preferably rooted)
 - `frida-server` running on the device
 
----
-
 ## 💻 Installing Frida
 
 ### 🔹 Windows
@@ -51,8 +49,6 @@ pip3 install frida-tools
 frida --version
 ```
 
----
-
 ## 🔧 Installing ADB
 
 ### 🔹 Windows
@@ -76,8 +72,6 @@ adb devices
 ```bash
 brew install android-platform-tools
 ```
-
----
 
 ## 📲 Installing `frida-server` on Android
 
@@ -111,8 +105,6 @@ adb shell
 su
 /data/local/tmp/frida-server &
 ```
-
----
 
 ## 💡 Extra Tips
 
