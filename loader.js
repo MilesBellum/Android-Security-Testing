@@ -8,19 +8,24 @@ const scripts = [
     'native_strstr_hook.js',
     'emulator_bypass.js',
     'prefs_hook.js',
-    'force_login.js'
+    'force_login.js',
+    'block_system_exit.js'
 ];
 
-function loadScript(scriptName) {
-    const file = new File(scriptName, "r");
-    const content = file.readAll();
-    file.close();
-    eval(content);
+// Helper to load scripts dynamically
+function loadScript(path) {
+    try {
+        const content = require('fs').readFileSync(path, 'utf8');
+        eval(content);
+        console.log(`✅ Loaded: ${path}`);
+    } catch (e) {
+        console.error(`❌ Failed to load: ${path}`, e);
+    }
 }
 
-for (let i = 0; i < scripts.length; i++) {
-    console.log("[*] Loading: " + scripts[i]);
-    loadScript(scripts[i]);
-}
+// Load all scripts
+scripts.forEach(name => {
+    loadScript(`scripts/${name}`);
+});
 
-// You can use: frida -U -n com.app.target -l loader.js
+// You can use: frida -U -n com.package.name -l loader.js

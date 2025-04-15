@@ -11,9 +11,9 @@ Before using `loader` script, make sure you have the following installed:
 - An Android device (preferably rooted)
 - `frida-server` running on the device
 
-## 💻 Installing Frida
+## 🛠️ Installing Frida
 
-### 🔹 Windows
+### 🪟 Windows
 
 1. Download and install Python from [https://www.python.org/downloads/windows](https://www.python.org/downloads/windows)
 
@@ -29,10 +29,10 @@ pip install frida-tools
 frida --version
 ```
 
-### 🔹 MacOS
+### 🍎 MacOS
 1. Open Terminal.
 
-2. Install Python using Homebrew:
+2. Install Python and Pip using Homebrew:
 
 ```bash
 brew install python
@@ -50,9 +50,9 @@ pip3 install frida-tools
 frida --version
 ```
 
-## 🔧 Installing ADB
+## 🔧 Installing ADB (Android Debug Bridge)
 
-### 🔹 Windows
+### 🪟 Windows
 
 1. Download `Platform Tools` from [https://developer.android.com/studio/releases/platform-tools](https://developer.android.com/studio/releases/platform-tools)
 
@@ -66,7 +66,7 @@ frida --version
 adb devices
 ```
 
-### 🔹 MacOS
+### 🍎 MacOS
 
 1. Install `Platform Tools`:
 
@@ -74,7 +74,7 @@ adb devices
 brew install android-platform-tools
 ```
 
-## 📲 Installing `frida-server` on Android
+## 📲 Installing `frida-server` on Android device
 
 1. Download `frida-server` from [https://github.com/frida/frida/releases](https://github.com/frida/frida/releases)
 
@@ -86,39 +86,112 @@ frida-server-<version>-android-arm64.xz
 
 2. Extract the file:
 
+### 🪟 Windows
+
+Uncompress the XZ into a folder.
+
+### 🍎 MacOS
+
 ```bash
-xz -d frida-server-*.xz
-chmod +x frida-server
+unxz frida-server-*.xz
 ```
 
-It is recommended not to use the name `frida-server` and use a random name instead. i.e. `android-pen-server`.
+or
 
-3. Push it to your device:
+```bash
+xz -d frida-server-*.xz
+```
+
+3. Push `frida-server` to the Android device:
 
 ```bash
 adb root # Might be required
 adb push frida-server /data/local/tmp/
-adb shell "chmod 755 /data/local/tmp/frida-server"
 ```
 
-4. Start `frida-server`:
+It is recommended not to use the name `frida-server` and use a random name instead. i.e. `android-pen-server`.
+
+4. Init the shell (from the device's shell):
 
 ```bash
-adb shell "/data/local/tmp/frida-server &"
+adb shell
 ```
 
-For the last step, make sure you start `frida-server` as root, i.e. if you are doing this on a rooted device, you might need to `su` and run it from that shell.
+5. Give it executable permissions:
 
-## 💡 Extra Tips
+```bash
+cd /data/local/tmp
+chmod +x frida-server
+chmod 755 /data/local/tmp/frida-server
+```
 
-- Use `frida-ps -U` to list running processes on the device.
+6. Start `frida-server`:
 
-- Use `frida-trace -U -n com.app.target -i nativeCheck` to auto-generate hooks.
+```bash
+/data/local/tmp/frida-server &
+```
 
-- Some apps might be able to detect the `frida-server` location. Renaming the `frida-server` binary to a random name, or moving it to another location such as `/dev` may do the trick.
+For the last step, make sure you start `frida-server` as root, i.e. if you are doing this on a rooted device, you might need to `su` (after of `adb shell`) and run it from that shell. You might see `#` instead of `$`.
+
+## 🪟 Run the installer script on Windows (PowerShell)
+
+If you're on Windows:
+
+1. Open PowerShell in the folder where `frida-server` and `install_frida_server.ps1` are located.
+2. Allow script execution (temporary):
+
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+```
+
+3. Run the script:
+
+```powershell
+./install_frida_server.ps1
+```
+
+## 🍎 Automate install on macOS
+
+```bash
+./install_frida_server.sh
+```
+
+## 💀 Kill the process manually
+
+```bash
+adb shell
+su
+ps | grep frida
+```
+
+This shows something like:
+
+```bash
+u0_a123   1234  567   ...  /data/local/tmp/frida-server
+```
+
+Now kill it (replace 1234 with the actual PID):
+
+```bash
+kill -9 1234
+```
+
+## ⚠️ Notes
+
+- If you get something like `Failed to enumerate processes: unable to access process with pid <number> due to system restrictions; try 'sudo sysctl kernel.yama.ptrace_scope=0'`, run Frida as root
+
+- SELinux might still show as enforcing if the kernel is locked down — but this usually works on custom ROMs or rooted stock ROMs.
 
 - If you get `adbd cannot run as root in production builds` after running `adb root`
 you need to prefix each shell command with `su -c`. For example: `adb shell "su -c chmod 755 /data/local/tmp/frida-server"`
+
+## 💡 Extra Tips
+
+- Use `frida-ps -U` to list running processes on the device. It may help you to find the name of the target application.
+
+- Use `frida-trace -U -n com.package.name -i nativeCheck` to auto-generate hooks.
+
+- Some apps might be able to detect the `frida-server` location. Renaming the `frida-server` binary to a random name, or moving it to another location such as `/dev` may do the trick.
 
 - Make sure the app is in the foreground before hooking.
 
