@@ -181,6 +181,12 @@ Now kill it (replace 1234 with the actual PID):
 kill -9 1234
 ```
 
+Or if you want to kill all `frida-server` processes automatically use:
+
+```bash
+adb shell pkill frida-server
+```
+
 ## ⚠️ Notes
 
 - If you get something like `Failed to enumerate processes: unable to access process with pid <number> due to system restrictions; try 'sudo sysctl kernel.yama.ptrace_scope=0'`, run Frida as root
