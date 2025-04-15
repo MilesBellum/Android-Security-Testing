@@ -135,6 +135,8 @@ For the last step, make sure you start `frida-server` as root, i.e. if you are d
 
 ## 📦 Automated installation
 
+If you want to save the lines of code and automate the whole process above, follow the steps below:
+
 ### 🪟Windows
 
 1. Open PowerShell in the folder where `frida-server` and `install_frida_server.ps1` are located.
