@@ -133,11 +133,12 @@ chmod 755 /data/local/tmp/frida-server
 
 For the last step, make sure you start `frida-server` as root, i.e. if you are doing this on a rooted device, you might need to `su` (after of `adb shell`) and run it from that shell. You might see `#` instead of `$`.
 
-## 🪟 Run the installer script on Windows (PowerShell)
+## 📦 Automated installation
 
-If you're on Windows:
+### 🪟Windows
 
 1. Open PowerShell in the folder where `frida-server` and `install_frida_server.ps1` are located.
+
 2. Allow script execution (temporary):
 
 ```powershell
@@ -150,7 +151,9 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 ./install_frida_server.ps1
 ```
 
-## 🍎 Automate install on macOS
+### 🍎 MacOS
+
+1. Open Terminal in the folder where `frida-server` and `install_frida_server.sh` are located.
 
 ```bash
 ./install_frida_server.sh
