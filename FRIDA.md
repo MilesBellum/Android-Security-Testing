@@ -115,6 +115,7 @@ It is recommended not to use the name `frida-server` and use a random name inste
 
 ```bash
 adb shell
+su # Might be required if you are doing this on a rooted device. You might see `#` instead of `$`
 ```
 
 5. Give it executable permissions:
@@ -122,7 +123,7 @@ adb shell
 ```bash
 cd /data/local/tmp
 chmod +x frida-server
-chmod 755 /data/local/tmp/frida-server
+chmod 755 frida-server
 ```
 
 6. Start `frida-server`:
@@ -130,8 +131,6 @@ chmod 755 /data/local/tmp/frida-server
 ```bash
 /data/local/tmp/frida-server &
 ```
-
-For the last step, make sure you start `frida-server` as root, i.e. if you are doing this on a rooted device, you might need to `su` (after of `adb shell`) and run it from that shell. You might see `#` instead of `$`.
 
 ## 📦 Automated installation
 
@@ -188,6 +187,10 @@ adb shell pkill frida-server
 ```
 
 ## ⚠️ Notes
+
+- Never leave `frida-server` running in production or on a real device without protection, as it opens a dangerous door.
+
+- Be sure to kill the process when you are done.
 
 - If you get something like `Failed to enumerate processes: unable to access process with pid <number> due to system restrictions; try 'sudo sysctl kernel.yama.ptrace_scope=0'`, run Frida as root
 
