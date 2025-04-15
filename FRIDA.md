@@ -129,7 +129,7 @@ chmod 755 frida-server
 6. Start `frida-server`:
 
 ```bash
-/data/local/tmp/frida-server &
+./frida-server &
 ```
 
 ## 📦 Automated installation
