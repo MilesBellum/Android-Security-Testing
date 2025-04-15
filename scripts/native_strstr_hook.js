@@ -1,3 +1,4 @@
+// Intercepts calls to the native function `strstr`
 Interceptor.attach(Module.findExportByName("libc.so", "strstr"), {
     onEnter: function (args) {
         var haystack = Memory.readCString(args[0]);

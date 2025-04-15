@@ -1,3 +1,4 @@
+// Prevents detection of rooted devices 
 Java.perform(function () {
     var RootChecker = Java.use('java.io.File');
     RootChecker.exists.implementation = function () {

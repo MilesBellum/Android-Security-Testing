@@ -1,3 +1,4 @@
+// Hook to `checkPassword` method to monitor passwords
 Java.perform(function () {
     var LoginClass = Java.use("com.example.auth.AuthManager");
 

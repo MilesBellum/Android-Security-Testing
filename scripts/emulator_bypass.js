@@ -1,3 +1,4 @@
+// Hides emulator indicators
 Java.perform(function () {
     var Build = Java.use("android.os.Build");
 

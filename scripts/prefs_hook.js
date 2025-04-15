@@ -1,3 +1,4 @@
+// Manipulates `SharedPreferences` to activate hidden functions
 Java.perform(function () {
     var prefs = Java.use("android.app.SharedPreferencesImpl");
 

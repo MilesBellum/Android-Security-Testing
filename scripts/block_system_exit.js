@@ -1,3 +1,4 @@
+// Block calls to `System.exit()` in Java and the native `exit()` function in C/C++ to prevent the app from closing
 Java.perform(function () {
     // Hook Java System.exit()
     var System = Java.use('java.lang.System');
